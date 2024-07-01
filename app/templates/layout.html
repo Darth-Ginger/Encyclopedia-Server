@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ header_image_url }}" alt="Header Image">
+    </header>
+    <main>
+        <div class="container" id="widget-container">
+            {% for widget in widgets %}
+                <div class="widget" id="widget-{{ widget.id }}" style="width: {{ widget.width }}px; height: {{ widget.height }}px;">
+                    <h2>{{ widget.title }}</h2>
+                    <div class="widget-content">{{ widget.content }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

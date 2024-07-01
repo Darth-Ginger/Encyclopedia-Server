@@ -1,7 +1,7 @@
 from app import create_app
-from app.server import Server
-from app.utils import parse_arguments, load_config, update_config_with_args
-from app.logger import Logger
+from app.pipe_reader.Pipe_Reader import Pipe_Reader
+from app.utils.utils import parse_arguments, load_config, update_config_with_args
+from app.utils.logger import Logger
 import os
 
 # Load default config from config.json
@@ -21,9 +21,9 @@ app.config.update(config)
 # Initialize the logger
 logger = Logger(app)
 
-hostname: str    = app.config["host"]
-port    : int    = int(app.config["port"])
-server  : Server = Server(hostname=hostname, port=port)
+hostname     : str         = app.config["host"]
+port         : int         = int(app.config["port"])
+pipe_reader  : Pipe_Reader = Pipe_Reader()
 
 if __name__ == "__main__":
-    server.start()
+    pipe_reader.start()

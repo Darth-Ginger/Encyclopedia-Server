@@ -1,4 +1,5 @@
 {
+    "name": "x4_external_encyclopedia",
     "version": "0.1",
     "debug": true,          
     "debug_file": "debug.log",
@@ -11,5 +12,6 @@
     "buffer_size": 262144,
     "to_file": true,
     "file_name": "x4_external_encyclopedia.log"
+    
 
 }

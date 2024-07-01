@@ -20,9 +20,9 @@ class Logger:
         """
         Initialize the logger based on the application's configuration.
         """
-        self.debug = app.config.get('debug', False)
-        self.debug_file = app.config.get('debug_file', 'app.log')
-        self.debug_level = log_levels.get(app.config.get('debug_level', "info"))
+        self.debug      : bool = app.config.get('debug', False)
+        self.debug_file : str  = app.config.get('debug_file', 'app.log')
+        self.debug_level: int  = log_levels.get(app.config.get('debug_level', "info"))
 
         if self.debug:
             logging.basicConfig(
@@ -38,7 +38,11 @@ class Logger:
         """
         def decorator(func):
             def wrapper(*args, **kwargs):
-                if current_app.config.get('DEBUG', False) and current_app.config.get('DEBUG_LEVEL', logging.DEBUG) <= level:
+                func_logger = None
+                if hasattr(func.__self__.__class__, 'logger'):
+                    func_logger: Logger = func.__self__.__class__.logger
+                if func_logger is not None \
+                    and func_logger.debug_level <= level:
                     current_app.logger.log(level, f"Calling {func.__name__} with args: {args}, kwargs: {kwargs}")
                 return func(*args, **kwargs)
             return wrapper
