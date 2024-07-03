@@ -1,9 +1,13 @@
+import os
 from typing import Any, Dict
 from argparse import ArgumentParser, HelpFormatter
 import json
-import pathlib
 
-config = json.loads((pathlib.Path(__file__).parent.parent / "config.json").read_text())
+
+conf_file = os.path.join(os.path.dirname(__file__), '..', '..', 'config.json')
+
+with open(conf_file, 'r') as config_file:
+    config = json.load(config_file)
 
 class CustomHelpFormatter(HelpFormatter):
     def __init__(self, prog: str) -> None:

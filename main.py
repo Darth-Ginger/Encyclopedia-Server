@@ -1,4 +1,3 @@
-from app import create_app
 from app.pipe_reader.Pipe_Reader import Pipe_Reader
 from app.utils.utils import parse_arguments, load_config, update_config_with_args
 from app.utils.logger import Logger
@@ -15,14 +14,14 @@ args = parse_arguments()
 config = update_config_with_args(config, args)
 
 # Create the Flask app
-app = create_app()
-app.config.update(config)
+
+
 
 # Initialize the logger
-logger = Logger(app)
+# logger = Logger(app)
 
-hostname     : str         = app.config["host"]
-port         : int         = int(app.config["port"])
+# hostname     : str         = app.config["host"]
+# port         : int         = int(app.config["port"])
 pipe_reader  : Pipe_Reader = Pipe_Reader()
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@
     "stream_timeout": 10,    
     "host": "127.0.0.1",    
     "port": 5000,         
-    "pipe_name": "\\.\\pipe\\x4_external_encyclopedia",
+    "pipe_name": "\\\\.\\pipe\\x4_external_enc",
     "buffer_size": 262144,
     "to_file": true,
     "file_name": "x4_external_encyclopedia.log"
